@@ -20,7 +20,8 @@ jobs:
           java-version: '17'
  
       - name: Build and test with Maven
-        run: mvn clean verify -f ./simple-api/pom.xml
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=myproject -Dsonar.organization=yvanmeli -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
+
 
   build-and-push-docker-image:
    needs: test-backend
